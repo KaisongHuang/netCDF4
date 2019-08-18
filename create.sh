@@ -1,8 +1,5 @@
 #!/bin/bash
-
-ensemble=''
-
-for i in {1951..2100}
+for i in {1951..1952}
   do
-    python 'create_'$ensemble'.py' $i
+    python 'create_'$1'.py' $i
   done
