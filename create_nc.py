@@ -136,7 +136,7 @@ def create_file(yyyy):
     nc.rcm_version_id = "r2"
     nc.frequency = "1hr"
     nc.product = "output"
-    nc.CCCma_runid = "nam44_v002_eic-009"#eic-008
+    nc.CCCma_runid = "nam44_v002_eic-009"#eia-008
     nc.creation_date = "2016-12-13-T19:09:00Z"#2016-12-13-T17:48:26Z
     nc.contact = "cccma_info@ec.gc.ca"
     nc.references = "http://www.cccma.ec.gc.ca/models"
