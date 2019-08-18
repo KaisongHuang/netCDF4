@@ -1,22 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
 from netCDF4 import Dataset
 import netCDF4 as nc
 import numpy as np
 from datetime import datetime
 
 
-# In[ ]:
-
-
 file_path = '../test/2100_r9i2p1r3.nc'
-
-
-# In[ ]:
 
 
 # Merge rlon, rlat, time
@@ -37,9 +28,6 @@ all_file['rlat'][:] = part_data
 # Close files
 all_file.close()
 part_file.close()
-
-
-# In[ ]:
 
 
 # Merge time
@@ -64,9 +52,6 @@ all_file.close()
 part_file.close()
 
 
-# In[ ]:
-
-
 # Merge lon, lat
 # Open files
 all_file = Dataset(file_path, 'a')
@@ -84,9 +69,6 @@ for ilat in range(len(lat_data)):
 
 # Close files
 all_file.close()
-
-
-# In[ ]:
 
 
 # all_file = Dataset(file_path, 'a')
@@ -107,9 +89,6 @@ all_file.close()
 # all_file.close()
 
 
-# In[ ]:
-
-
 # Merge huss
 # Open files
 print('Opening files...')
@@ -127,9 +106,6 @@ for i in range(start, end + 1):
 print('Closing files...')
 all_file.close()
 part_file.close()
-
-
-# In[ ]:
 
 
 # Merge pr
@@ -153,9 +129,6 @@ all_file.close()
 part_file.close()
 
 
-# In[ ]:
-
-
 # Merge ps
 # Open files
 print('Opening files...')
@@ -175,9 +148,6 @@ for i in range(start, end + 1):
 print('Closing files...')
 all_file.close()
 part_file.close()
-
-
-# In[ ]:
 
 
 # Merge rlds
@@ -201,9 +171,6 @@ all_file.close()
 part_file.close()
 
 
-# In[ ]:
-
-
 # Merge rsds
 # Open files
 print('Opening files...')
@@ -225,9 +192,6 @@ all_file.close()
 part_file.close()
 
 
-# In[ ]:
-
-
 # Merge wind_speed
 # Open files
 print('Opening files...')
@@ -247,9 +211,6 @@ for i in range(start, end + 1):
 print('Closing files...')
 all_file.close()
 part_file.close()
-
-
-# In[ ]:
 
 
 # Merge tas
