@@ -12,7 +12,7 @@ import os
 # In[73]:
 
 
-file_path = '../test/1952_r9i2p1r3.nc'
+file_path = '../test/2100_r9i2p1r3.nc'
 
 
 # In[74]:

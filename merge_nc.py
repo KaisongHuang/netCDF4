@@ -13,7 +13,7 @@ from datetime import datetime
 # In[ ]:
 
 
-file_path = '../test/1952_r9i2p1r3.nc'
+file_path = '../test/2100_r9i2p1r3.nc'
 
 
 # In[ ]:
@@ -49,7 +49,8 @@ part_file = Dataset('../test/huss_r9i2p1r3_final.nc', 'r')
 
 var_name = 'time'
 print('Appending variable {}'.format(var_name))
-start = 2920
+year = 2100
+start = (year - 1951) * 2920
 end = start + 2919
 part_data = part_file[var_name]
 all_data = all_file['time']
@@ -117,8 +118,6 @@ part_file = Dataset('../test/huss_r9i2p1r3_final.nc', 'r')
 
 var_name = 'huss'
 print('Appending variable {}...'.format(var_name))
-start = 2920
-end = start + 2919
 index = 0
 for i in range(start, end + 1):
     all_file['hus'][index] = part_file[var_name][i]
@@ -141,8 +140,6 @@ part_file = Dataset('../test/pr_r9i2p1r3_final.nc', 'r')
 
 var_name = 'pr'
 print('Appending variable {}...'.format(var_name))
-start = 2920
-end = start + 2919
 part_data = part_file[var_name]
 all_data = all_file['pr']
 index = 0
@@ -167,8 +164,6 @@ part_file = Dataset('../test/ps_r9i2p1r3_final.nc', 'r')
 
 var_name = 'ps'
 print('Appending variable {}...'.format(var_name))
-start = 2920
-end = start + 2919
 part_data = part_file[var_name]
 all_data = all_file['ps']
 index = 0
@@ -193,8 +188,6 @@ part_file = Dataset('../test/rlds_r9i2p1r3_final.nc', 'r')
 
 var_name = 'rlds'
 print('Appending variable {}...'.format(var_name))
-start = 2920
-end = start + 2919
 part_data = part_file[var_name]
 all_data = all_file['rlds']
 index = 0
@@ -219,8 +212,6 @@ part_file = Dataset('../test/rsds_r9i2p1r3_final.nc', 'r')
 
 var_name = 'rsds'
 print('Appending variable {}...'.format(var_name))
-start = 2920
-end = start + 2919
 part_data = part_file[var_name]
 all_data = all_file['rsds']
 index = 0
@@ -245,8 +236,6 @@ part_file = Dataset('../test/sfcWind_r9i2p1r3_final.nc', 'r')
 
 var_name = 'sfcWind'
 print('Appending variable {}...'.format(var_name))
-start = 2920
-end = start + 2919
 part_data = part_file[var_name]
 all_data = all_file['wind_speed']
 index = 0
@@ -271,8 +260,6 @@ part_file = Dataset('../test/tas_r9i2p1r3_final.nc', 'r')
 
 var_name = 'tas'
 print('Appending variable {}...'.format(var_name))
-start = 2920
-end = start + 2919
 part_data = part_file[var_name]
 all_data = all_file['ta']
 index = 0
