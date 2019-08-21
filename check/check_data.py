@@ -9,7 +9,7 @@ def generate_points(_year):
     for i in range(10):
         point = []
         new_time = randint(0, 2919)
-        old_time = new_time + (int(_year) - 1951) * 2920
+        old_time = new_time + (_year - 1951) * 2920
         lat = randint(0, 327)
         lon = randint(0, 799)
 
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     wind_speed_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'sfcWind_' + ensemble_member + '_final.nc'
     ta_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'tas_' + ensemble_member + '_final.nc'
 
-    points = generate_points(year)
+    points = generate_points(int(year))
 
     if (check_hus() and check_pr() and check_ps() and check_rlds() and
             check_rsds() and check_wind_speed() and check_ta()):
