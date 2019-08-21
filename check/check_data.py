@@ -2,56 +2,142 @@ from random import randint
 from netCDF4 import Dataset
 import sys
 
-def generate_point():
-    points = []
+
+def generate_points(_year):
+    _points = []
 
     for i in range(10):
         point = []
-        part_times = randint(0,2919)
-        all_times = part_times + (int(year) - 1951) * 2920
-        lats = randint(0,327)
-        lons = randint(0,799)
+        new_time = randint(0, 2919)
+        old_time = new_time + (int(_year) - 1951) * 2920
+        lat = randint(0, 327)
+        lon = randint(0, 799)
 
-        point += part_times
-        point += all_times
-        point += lats
-        point += lons
+        point += new_time
+        point += old_time
+        point += lat
+        point += lon
 
-        points += point
+        _points += point
 
-    return points
+    return _points
+
+
+def check_data(_new_data, _old_data):
+    for point in points:
+        new_time = point[0]
+        old_time = point[1]
+        lat = point[2]
+        lon = point[3]
+        if _new_data[new_time][lat][lon] != _old_data[old_time][lat][lon]:
+            return False
+
+    return True
 
 
 def check_hus():
-    part_data = Dataset(year+'_'+ensemble_member+'.nc', 'r')
-    part_hus = part_data
-    all_hus_data = Dataset('huss_'+ensemble_member+'_final.nc', 'r')
-    printf()
+    new_ds = Dataset(new_file, 'r')
+    old_ds = Dataset(hus_file, 'r')
+
+    new_data = new_ds['hus']
+    old_data = old_ds['huss']
+
+    result = check_data(new_data, old_data)
+
+    new_ds.close()
+    old_ds.close()
+
+    return result
 
 
 def check_pr():
-    all_pr_data = Data
-    printf()
+    new_ds = Dataset(new_file, 'r')
+    old_ds = Dataset(pr_file, 'r')
+
+    new_data = new_ds['pr']
+    old_data = old_ds['pr']
+
+    result = check_data(new_data, old_data)
+
+    new_ds.close()
+    old_ds.close()
+
+    return result
 
 
 def check_ps():
-    printf()
+    new_ds = Dataset(new_file, 'r')
+    old_ds = Dataset(ps_file, 'r')
+
+    new_data = new_ds['ps']
+    old_data = old_ds['ps']
+
+    result = check_data(new_data, old_data)
+
+    new_ds.close()
+    old_ds.close()
+
+    return result
 
 
 def check_rlds():
-    printf()
+    new_ds = Dataset(new_file, 'r')
+    old_ds = Dataset(rlds_file, 'r')
+
+    new_data = new_ds['rlds']
+    old_data = old_ds['rlds']
+
+    result = check_data(new_data, old_data)
+
+    new_ds.close()
+    old_ds.close()
+
+    return result
 
 
 def check_rsds():
-    printf()
+    new_ds = Dataset(new_file, 'r')
+    old_ds = Dataset(rsds_file, 'r')
+
+    new_data = new_ds['rsds']
+    old_data = old_ds['rsds']
+
+    result = check_data(new_data, old_data)
+
+    new_ds.close()
+    old_ds.close()
+
+    return result
 
 
 def check_wind_speed():
-    printf()
+    new_ds = Dataset(new_file, 'r')
+    old_ds = Dataset(wind_speed_file, 'r')
+
+    new_data = new_ds['wind_speed']
+    old_data = old_ds['sfcWind']
+
+    result = check_data(new_data, old_data)
+
+    new_ds.close()
+    old_ds.close()
+
+    return result
 
 
 def check_ta():
-    printf()
+    new_ds = Dataset(new_file, 'r')
+    old_ds = Dataset(ta_file, 'r')
+
+    new_data = new_ds['ta']
+    old_data = old_ds['tas']
+
+    result = check_data(new_data, old_data)
+
+    new_ds.close()
+    old_ds.close()
+
+    return result
 
 
 if __name__ == '__main__':
@@ -61,9 +147,19 @@ if __name__ == '__main__':
     ensemble_member = sys.argv[1]
     year = sys.argv[2]
 
-    points = generate_points()
+    new_file = year + '_' + ensemble_member + '.nc'
+    hus_file = 'huss_'+ ensemble_member + '_final.nc'
+    pr_file = 'pr_' + ensemble_member + '_final.nc'
+    ps_file = 'ps_' + ensemble_member + '_final.nc'
+    rlds_file = 'rlds_' + ensemble_member + '_final.nc'
+    rsds_file = 'rsds_' + ensemble_member + '_final.nc'
+    wind_speed_file = 'sfcWind_' + ensemble_member + '_final.nc'
+    ta_file = 'tas_' + ensemble_member + '_final.nc'
 
-    if(check_hus() && check_pr() && check_ps()  && check_rlds()  && check_rsds()  && check_wind_speed()  && check_ta()):
-        printf(year+'_'+ensemble_member+'.nc: ok')
+    points = generate_points(year)
+
+    if (check_hus() and check_pr() and check_ps() and check_rlds() and
+            check_rsds() and check_wind_speed() and check_ta()):
+        print(new_file + ': ok')
     else:
-        printf(year+'_'+ensemble_member+'.nc: corrupted')
+        print(new_file + ': corrupted')
