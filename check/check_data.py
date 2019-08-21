@@ -18,7 +18,7 @@ def generate_points(_year):
         point.append(lat)
         point.append(lon)
 
-        _points += point
+        _points.append(point)
 
     return _points
 
