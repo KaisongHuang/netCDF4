@@ -141,7 +141,7 @@ def check_ta():
 
 
 if __name__ == '__main__':
-    if len(sys.argv < 3):
+    if len(sys.argv) < 3:
         raise Exception('arg1: ensemble membler\narg2: year')
 
     ensemble_member = sys.argv[1]
