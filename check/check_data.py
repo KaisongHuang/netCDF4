@@ -147,14 +147,14 @@ if __name__ == '__main__':
     ensemble_member = sys.argv[1]
     year = sys.argv[2]
 
-    new_file = year + '_' + ensemble_member + '.nc'
-    hus_file = 'huss_'+ ensemble_member + '_final.nc'
-    pr_file = 'pr_' + ensemble_member + '_final.nc'
-    ps_file = 'ps_' + ensemble_member + '_final.nc'
-    rlds_file = 'rlds_' + ensemble_member + '_final.nc'
-    rsds_file = 'rsds_' + ensemble_member + '_final.nc'
-    wind_speed_file = 'sfcWind_' + ensemble_member + '_final.nc'
-    ta_file = 'tas_' + ensemble_member + '_final.nc'
+    new_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + year + '_' + ensemble_member + '.nc'
+    hus_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'huss_'+ ensemble_member + '_final.nc'
+    pr_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'pr_' + ensemble_member + '_final.nc'
+    ps_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'ps_' + ensemble_member + '_final.nc'
+    rlds_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'rlds_' + ensemble_member + '_final.nc'
+    rsds_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'rsds_' + ensemble_member + '_final.nc'
+    wind_speed_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'sfcWind_' + ensemble_member + '_final.nc'
+    ta_file = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/'+ ensemble_member + '/' + 'tas_' + ensemble_member + '_final.nc'
 
     points = generate_points(year)
 
