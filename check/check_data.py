@@ -13,10 +13,10 @@ def generate_points(_year):
         lat = randint(0, 327)
         lon = randint(0, 799)
 
-        point += new_time
-        point += old_time
-        point += lat
-        point += lon
+        point.append(new_time)
+        point.append(old_time)
+        point.append(lat)
+        point.append(lon)
 
         _points += point
 
