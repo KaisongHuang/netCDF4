@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in {1951..2100}:
+for i in {1951..2100}
     do
         sbatch --account=rpp-hwheater --time=00:01:10 --job-name=r8i2p1r1_$i --mem=1G --output=r8i2p1r1.log --open-mode=append check.sh r8i2p1r1 $i
         sbatch --account=rpp-hwheater --time=00:01:10 --job-name=r8i2p1r2_$i --mem=1G --output=r8i2p1r2.log --open-mode=append check.sh r8i2p1r2 $i
