@@ -3,6 +3,7 @@
 from netCDF4 import Dataset
 import numpy as np
 import sys
+import re
 
 
 def create_file(_ensemble, _year):
@@ -103,18 +104,80 @@ def create_file(_ensemble, _year):
     v_ta.standard_name = "air_temperature"
 
     # Create global attributes
-    if(_ensemble == 'r8i2p1r2'):
-        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eib-008"#eia-008
-        nc.experiment_id = "historical-r2"#historical-r1
-        nc.driving_experiment = "CCCma-CanESM2, historical-r2, r8i2p1"#historical-r1, r8i2p1
-        nc.driving_experiment_name = "historical-r2"#historical-r1
-        nc.driving_model_ensemble_member = "r8i2p1"#r8i2p1
-        nc.realization = "8"#8
-        nc.initialization_method = "2"#2
-        nc.physics_version = "1"#1
-        nc.CCCma_runid = "nam44_v002_eib-008"#eia-008
-        nc.creation_date = "2016-12-13-T01:51:35Z"#2016-12-13-T17:48:26Z
+    args = re.findall(r"\d+\.?\d*", _ensemble)
+    realization = args[0]
+    initialization = args[1]
+    physics = args[2]
+    eid = args[3]
+    
+    if _ensemble == 'r8i2p1r1':
+        nc.CCCma_runid = "nam44_v002_eia-008"
+        nc.creation_date = "2016-12-13-T17:48:26Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eia-008"
+    if _ensemble == 'r8i2p1r2':
+        nc.CCCma_runid = "nam44_v002_eib-008"
+        nc.creation_date = "2016-12-13-T01:51:35Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eib-008"
+    if _ensemble == 'r8i2p1r3':
+        nc.CCCma_runid = "nam44_v002_eic-008"
+        nc.creation_date = "2016-12-12-T21:03:35Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eic-008"
+    if _ensemble == 'r8i2p1r4':
+        nc.CCCma_runid = "nam44_v002_eid-008"
+        nc.creation_date = "2016-12-13-T17:48:47Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eid-008"
+    if _ensemble == 'r8i2p1r5':
+        nc.CCCma_runid = "nam44_v002_eie-008"
+        nc.creation_date = "2016-12-13-T17:49:10Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eie-008"
+    if _ensemble == 'r9i2p1r1':
+        nc.CCCma_runid = "nam44_v002_eia-009"
+        nc.creation_date = "2016-12-12-T18:28:25Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eia-009"
+    if _ensemble == 'r9i2p1r2':
+        nc.CCCma_runid = "nam44_v002_eib-009"
+        nc.creation_date = "2016-12-14-T17:57:55Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eib-009"
+    if _ensemble == 'r9i2p1r3':
+        nc.CCCma_runid = "nam44_v002_eic-009"
+        nc.creation_date = "2016-12-13-T19:09:00Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eic-009"
+    if _ensemble == 'r9i2p1r4':
+        nc.CCCma_runid = "nam44_v002_eid-009"
+        nc.creation_date = "2016-12-13-T19:08:35Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eid-009"
+    if _ensemble == 'r9i2p1r5':
+        nc.CCCma_runid = "nam44_v002_eie-009"
+        nc.creation_date = "2016-12-13-T00:39:10Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eie-009"
+    if _ensemble == 'r10i2p1r1':
+        nc.CCCma_runid = "nam44_v002_eia-010"
+        nc.creation_date = "2016-12-13-T21:38:22Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eia-010"
+    if _ensemble == 'r10i2p1r2':
+        nc.CCCma_runid = "nam44_v002_eib-010"
+        nc.creation_date = "2016-12-12-T18:32:27Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eib-010"
+    if _ensemble == 'r10i2p1r3':
+        nc.CCCma_runid = "nam44_v002_eic-010"
+        nc.creation_date = "2016-12-13-T00:38:21Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eic-010"
+    if _ensemble == 'r10i2p1r4':
+        nc.CCCma_runid = "nam44_v002_eid-010"
+        nc.creation_date = "2016-12-12-T18:32:51Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eid-010"
+    if _ensemble == 'r10i2p1r5':
+        nc.CCCma_runid = "nam44_v002_eie-010"
+        nc.creation_date = "2016-12-15-T00:01:21Z"
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eie-010"
 
+    nc.experiment_id = "historical-r"+eid
+    nc.driving_experiment = "CCCma-CanESM2, historical-r"+eid+", r"+realization+"i"+initialization+"p"+physics
+    nc.driving_experiment_name = "historical-r"+eid
+    nc.driving_model_ensemble_member = "r"+realization+"i"+initialization+"p"+physics
+    nc.realization = realization
+    nc.initialization_method = initialization
+    nc.physics_version = physics
     nc.gwf_product = "canrcm4-wfdei-gem-capa"
     nc.CDI = "Climate Data Interface version 1.7.2 (http://mpimet.mpg.de/cdi)"
     nc.institution = "CCCma (Canadian Centre for Climate Modelling and Analysis, Victoria, BC, Canada)"
