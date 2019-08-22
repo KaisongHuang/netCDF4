@@ -5,8 +5,8 @@ import numpy as np
 import sys
 
 
-def create_file(yyyy):
-    file_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/r8i2p1r2/' + yyyy + '_r8i2p1r2.nc'
+def create_file(_ensemble, _year):
+    file_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/r8i2p1r2/' + _year + '_r8i2p1r2.nc'
 
     # Create an empty file
     nc = Dataset(file_path, 'w', format='NETCDF4_CLASSIC')
@@ -103,21 +103,25 @@ def create_file(yyyy):
     v_ta.standard_name = "air_temperature"
 
     # Create global attributes
+    if(_ensemble == 'r8i2p1r2'):
+        nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eib-008"#eia-008
+        nc.experiment_id = "historical-r2"#historical-r1
+        nc.driving_experiment = "CCCma-CanESM2, historical-r2, r8i2p1"#historical-r1, r8i2p1
+        nc.driving_experiment_name = "historical-r2"#historical-r1
+        nc.driving_model_ensemble_member = "r8i2p1"#r8i2p1
+        nc.realization = "8"#8
+        nc.initialization_method = "2"#2
+        nc.physics_version = "1"#1
+        nc.CCCma_runid = "nam44_v002_eib-008"#eia-008
+        nc.creation_date = "2016-12-13-T01:51:35Z"#2016-12-13-T17:48:26Z
+
     nc.gwf_product = "canrcm4-wfdei-gem-capa"
     nc.CDI = "Climate Data Interface version 1.7.2 (http://mpimet.mpg.de/cdi)"
     nc.institution = "CCCma (Canadian Centre for Climate Modelling and Analysis, Victoria, BC, Canada)"
     nc.Conventions = "CF-1.6"
     nc.title = "CanRCM4 model output prepared for CanSISE Project"
     nc.institute_id = "CCCma"
-    nc.experiment = "CanSISE downscaling run driven by CCCma-CanESM2 eib-008"#eia-008
-    nc.experiment_id = "historical-r2"#historical-r1
-    nc.driving_experiment = "CCCma-CanESM2, historical-r2, r8i2p1"#historical-r1, r8i2p1
     nc.driving_model_id = "CCCma-CanESM2"
-    nc.driving_experiment_name = "historical-r2"#historical-r1
-    nc.driving_model_ensemble_member = "r8i2p1"#r8i2p1
-    nc.realization = "8"#8
-    nc.initialization_method = "2"#2
-    nc.physics_version = "1"#1
     nc.forcing = "GHG,Oz,SA,BC,OC,LU,Vl (GHG includes CO2,CH4,N2O,CFC11,effective CFC12)"
     nc.project_id = "CanSISE"
     nc.model_id = "CCCma-CanRCM4"
@@ -125,8 +129,6 @@ def create_file(yyyy):
     nc.rcm_version_id = "r2"
     nc.frequency = "1hr"
     nc.product = "output"
-    nc.CCCma_runid = "nam44_v002_eib-008"#eia-008
-    nc.creation_date = "2016-12-13-T01:51:35Z"#2016-12-13-T17:48:26Z
     nc.contact = "cccma_info@ec.gc.ca"
     nc.references = "http://www.cccma.ec.gc.ca/models"
     nc.data_licence = "1) GRANT OF LICENCE - The Government of Canada (Environment Canada) is the \n""owner of all intellectual property rights (including copyright) that may exist in this Data \n""product. You (as \"The Licensee\") are hereby granted a non-exclusive, non-assignable, \n""non-transferable unrestricted licence to use this data product for any purpose including \n""the right to share these data with others and to make value-added and derivative \n""products from it. This licence is not a sale of any or all of the owner\'s rights.\n""2) NO WARRANTY - This Data product is provided \"as-is\"; it has not been designed or \n""prepared to meet the Licensee\'s particular requirements. Environment Canada makes no \n""warranty, either express or implied, including but not limited to, warranties of \n""merchantability and fitness for a particular purpose. In no event will Environment Canada \n""be liable for any indirect, special, consequential or other damages attributed to the \n""Licensee\'s use of the Data product."
@@ -135,9 +137,10 @@ def create_file(yyyy):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        raise Exception('year needed')
+    if len(sys.argv) < 3:
+        raise Exception('arg1: ensemble\narg2: year')
 
-    year = sys.argv[1]
+    ensemble = sys.argv[1]
+    year = sys.argv[2]
 
-    create_file(year)
+    create_file(ensemble, year)
