@@ -7,14 +7,14 @@ import logging
 
 
 def merge_file(ensemble, yyyy, log):
-    file_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/' + ensemble + '/' + yyyy + '_' + ensemble + '.nc'
-    hus_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/' + ensemble + '/huss_' + ensemble + '_final.nc'
-    pr_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/' + ensemble + '/pr_' + ensemble + '_final.nc'
-    ps_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/' + ensemble + '/ps_' + ensemble + '_final.nc'
-    rlds_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/' + ensemble + '/rlds_' + ensemble + '_final.nc'
-    rsds_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/' + ensemble + '/rsds_' + ensemble + '_final.nc'
-    wind_speed_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/' + ensemble + '/sfcWind_' + ensemble + '_final.nc'
-    ta_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/' + ensemble + '/tas_' + ensemble + '_final.nc'
+    file_path = './' + yyyy + '_' + ensemble + '.nc'
+    hus_path = './huss_' + ensemble + '_final.nc'
+    pr_path = './pr_' + ensemble + '_final.nc'
+    ps_path = './ps_' + ensemble + '_final.nc'
+    rlds_path = './rlds_' + ensemble + '_final.nc'
+    rsds_path = './rsds_' + ensemble + '_final.nc'
+    wind_speed_path = './sfcWind_' + ensemble + '_final.nc'
+    ta_path = './tas_' + ensemble + '_final.nc'
 
     all_file = Dataset(file_path, 'a')
 
