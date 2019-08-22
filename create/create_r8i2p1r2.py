@@ -7,7 +7,7 @@ import re
 
 
 def create_file(_ensemble, _year):
-    file_path = '/project/rpp-hwheater/k86huang/canrcm4-wfdei-gem-capa/r8i2p1r2/' + _year + '_r8i2p1r2.nc'
+    file_path = './' + _year + '_' + _ensemble + '.nc'
 
     # Create an empty file
     nc = Dataset(file_path, 'w', format='NETCDF4_CLASSIC')
